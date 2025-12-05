@@ -333,4 +333,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- JALANKAN INISIALISASI ---
     initCoverPage();
+
+    // --- 11. FUNGSI SUMBANGAN & WA CONFIRMATION ---
+
+    const copyBtn = document.getElementById('copyBtn');
+    const accountNumberSpan = document.getElementById('accountNumber');
+    const donationForm = document.getElementById('donationForm');
+
+    // Fitur Salin Clipboard
+    if (copyBtn) {
+        copyBtn.addEventListener('click', function() {
+            const accountNumber = accountNumberSpan.textContent;
+            
+            // Menggunakan Clipboard API untuk menyalin
+            navigator.clipboard.writeText(accountNumber)
+                .then(() => {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+                    this.style.background = '#00a854'; // Warna hijau sukses
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.background = ''; // Kembali ke warna CSS semula
+                    }, 1500);
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin:', err);
+                });
+        });
+    }
+
+    // Fitur Kirim ke WhatsApp
+    if (donationForm) {
+        donationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const inputName = document.getElementById('inputName').value;
+            const inputNominal = document.getElementById('inputNominal').value;
+            const phoneNumber = '6281263649153'; // Nomor WA Panitia
+
+            // Template pesan WhatsApp
+            const rawText = 
+                `Salam Natal,%0A` + 
+                `Saya ${inputName} ingin konfirmasi sumbangan Natal sebesar Rp${inputNominal} untuk Perayaan Natal NHKBP Sipahutar 2025.%0A` +
+                `%0ATerimakasih, Tuhan Memberkati!`;
+
+            // Menggantikan spasi dengan %20 dan memastikan format URI aman
+            const message = encodeURIComponent(rawText);
+
+            // Buka tautan WhatsApp
+            const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(whatsappLink, '_blank');
+        });
+    }
+    
 });
