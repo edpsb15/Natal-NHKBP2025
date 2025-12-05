@@ -1,9 +1,9 @@
 // =================================================================
-// SCRIPT.JS - VERSI BERSIH DAN FINAL
+// SCRIPT.JS - VERSI BERSIH & KOORDINAT DIPERBARUI
 // =================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // --- 1. VARIABEL INTI ---
+    // --- 1. VARIABEL INTI & KOORDINAT BARU ---
     const coverPage = document.getElementById('coverPage');
     const openInvitationBtn = document.getElementById('openInvitation');
     const mainContent = document.getElementById('mainContent');
@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let isMusicPlaying = false;
     let mapInitialized = false;
     
-    // Koordinat HKBP Sipahutar (GANTI INI JIKA ANDA TAHU KOORDINAT PASTINYA)
-    const churchLat = 1.9567; 
-    const churchLng = 99.0305;
-    const destination = `${churchLat},${churchLng}`;
-    const destinationName = 'HKBP Sipahutar Resort Sipahutar';
-    const destinationAddress = 'Desa Sipahutar I, Kec. Sipahutar, Kabupaten Tapanuli Utara';
+    // KOORDINAT BARU YANG BENAR (HKBP SIPAHUTAR)
+    const churchLat = 2.1166293; 
+    const churchLng = 99.0867791;
+    const destination = `${churchLat},${churchLng}`; // Digunakan untuk link Google Maps
+    const destinationName = 'HKBP SIPAHUTAR';
+    const destinationAddress = 'Ressort Sipahutar, Tapanuli Utara';
     
     let map;
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setupMapLazyLoad();
     }
 
-    // --- 4. FUNGSI SNOWFLAKES ---
+    // --- 4. FUNGSI SNOWFLAKES (Tetap) ---
 
     function createSnowflakes() {
         const snowflakesContainer = document.getElementById('snowflakesContainer');
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- 5. FUNGSI MAP LEAFLET ---
+    // --- 5. FUNGSI MAP LEAFLET (Koordinat & Teks Diperbaiki) ---
 
     function setupMapLazyLoad() {
         const mapSection = document.querySelector('.map-section');
@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function initMap() {
         try {
+            // Menggunakan koordinat yang diberikan user
             map = L.map('map').setView([churchLat, churchLng], 16);
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -142,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h4 style="margin: 0 0 10px 0; color: #D4523F; font-weight: bold; font-family: Cinzel, serif;">${destinationName}</h4>
                         <p style="margin: 0; font-size: 13px; color: #666; line-height: 1.4;">${destinationAddress}</p>
                         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
-                            <button onclick="window.open('https://maps.google.com/?q=${churchLat},${churchLng}', '_blank')" style="background: #D4523F; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-top: 5px;">
+                            <button onclick="window.open('http://googleusercontent.com/maps.google.com/?q=${churchLat},${churchLng}', '_blank')" style="background: #D4523F; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-top: 5px;">
                                 <i class="fas fa-external-link-alt"></i> Buka di Google Maps
                             </button>
                         </div>
@@ -158,12 +159,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
         } catch (error) {
             console.error('Error initializing map:', error);
+            // Fallback Map UI
             document.getElementById('map').innerHTML = `
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 20px; text-align: center;">
                     <i class="fas fa-map-marked-alt" style="font-size: 60px; color: #D4523F; margin-bottom: 20px;"></i>
                     <h4 style="color: #D4523F; margin-bottom: 10px;">${destinationName}</h4>
                     <p style="color: #666; margin-bottom: 5px;">${destinationAddress}</p>
-                    <a href="https://maps.google.com/?q=${churchLat},${churchLng}" 
+                    <a href="http://googleusercontent.com/maps.google.com/?q=${churchLat},${churchLng}" 
                         target="_blank" style="background: #D4523F; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
                         <i class="fas fa-external-link-alt"></i> Buka di Google Maps
                     </a>
@@ -172,23 +174,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- 6. FUNGSI ARAH (Directions) ---
+    // --- 6. FUNGSI ARAH (Directions - Koordinat Tujuan Diperbaiki) ---
 
     getDirectionsBtn.addEventListener('click', function() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 const userLat = position.coords.latitude;
                 const userLng = position.coords.longitude;
-                window.open(`https://www.google.com/maps/dir/${userLat},${userLng}&daddr=${destination}`, '_blank');
+                // Menggunakan `daddr` untuk tujuan di Google Maps
+                window.open(`https://www.google.com/maps/dir/${userLat},${userLng}/${destination}`, '_blank');
             }, function(error) {
-                window.open(`https://www.google.com/maps/search/?api=1&query=${destination}`, '_blank');
+                // Jika lokasi ditolak, buka peta langsung di tujuan
+                window.open(`http://googleusercontent.com/maps.google.com/?q=${destination}`, '_blank');
             });
         } else {
-            window.open(`https://www.google.com/maps/search/?api=1&query=${destination}`, '_blank');
+            window.open(`http://googleusercontent.com/maps.google.com/?q=${destination}`, '_blank');
         }
     });
 
-    // --- 7. FUNGSI MUSIK ---
+    // --- 7. FUNGSI MUSIK (Tetap) ---
 
     function startBackgroundMusic() {
         backgroundMusic.volume = 0.3;
@@ -228,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- 8. FUNGSI COUNTDOWN ---
+    // --- 8. FUNGSI COUNTDOWN (Tetap) ---
 
     function startCountdown() {
         function updateCountdown() {
@@ -276,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCountdown();
     }
 
-    // --- 9. FUNGSI ANIMASI & PARALLAX ---
+    // --- 9. FUNGSI ANIMASI & PARALLAX (Tetap) ---
 
     function initAnimations() {
         const sections = document.querySelectorAll('.header-logos, .header, .hero, .detail-card, .rundown-card, .map-section, .info-card, .countdown, .footer');
@@ -304,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- 10. INISIALISASI COVER PAGE ---
+    // --- 10. INISIALISASI COVER PAGE (Tetap) ---
 
     function initCoverPage() {
         createCoverSnowflakes();
