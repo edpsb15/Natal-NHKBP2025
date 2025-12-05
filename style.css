@@ -366,65 +366,6 @@ body {
     line-height: 1.6;
 }
 
-/* Popup Styles */
-.popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-    padding: 20px;
-}
-
-.close-popup {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background: rgba(212, 82, 63, 0.9);
-    border: 3px solid var(--white);
-    border-radius: 50%;
-    color: var(--white);
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-.close-popup:hover {
-    background: var(--white);
-    color: var(--primary-color);
-    transform: rotate(90deg) scale(1.1);
-}
-
-.popup-content {
-    width: 95%;
-    height: 95%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 12px;
-    margin: 2px;
-}
-
-.popup-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 5px;
-}
-
 /* Snowflakes */
 .snowflakes {
     position: fixed;
