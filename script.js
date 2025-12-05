@@ -374,9 +374,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Template pesan WhatsApp
             const rawText = 
-                `Salam Natal,%0A` + 
-                `Saya ${inputName} ingin konfirmasi sumbangan Natal sebesar Rp${inputNominal} untuk Perayaan Natal NHKBP Sipahutar 2025.%0A` +
-                `%0ATerimakasih, Tuhan Memberkati!`;
+                `Salam Natal, ` + 
+                `Saya ${inputName} ingin konfirmasi sumbangan Natal sebesar Rp${inputNominal} untuk Perayaan Natal NHKBP Sipahutar 2025.` +
+                `Terimakasih, Tuhan Memberkati!`;
 
             // Menggantikan spasi dengan %20 dan memastikan format URI aman
             const message = encodeURIComponent(rawText);
