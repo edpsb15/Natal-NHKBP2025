@@ -83,17 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 150);
     });
 
-    // Close popup function
-    function closePopup() {
-        popupOverlay.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        mainContent.style.display = 'block';
-        
-        // Initialize main content
-        initMainContent();
-    }
-
-
     // Initialize main content
     function initMainContent() {
         // Create snowflakes
@@ -136,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize map with Leaflet
     function initMap() {
         try {
-            map = L.map('map').setView([2.7416459, 98.7095258], 16);
+            map = L.map('map').setView([2.1171452, 99.0879337], 16);
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors',
@@ -342,7 +331,6 @@ document.addEventListener('DOMContentLoaded', function() {
         createCoverSnowflakes();
         
         // Ensure elements are properly hidden initially
-        popupOverlay.style.display = 'none';
         mainContent.style.display = 'none';
         coverPage.style.display = 'flex';
         
