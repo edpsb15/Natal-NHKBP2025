@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const coverPage = document.getElementById('coverPage');
     const openInvitationBtn = document.getElementById('openInvitation');
     const mainContent = document.getElementById('mainContent');
-    const popupOverlay = document.getElementById('popupOverlay');
-    const closePopupBtn = document.getElementById('closePopup');
     const backgroundMusic = document.getElementById('backgroundMusic');
     const musicToggle = document.getElementById('musicToggle');
     const musicIcon = document.getElementById('musicIcon');
@@ -62,16 +60,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Open invitation function
+    // KODE BARU DI script.js (GANTIKAN KODE LAMA)
     openInvitationBtn.addEventListener('click', function() {
-        // Add click animation
+        // 1. Tambahkan animasi klik tombol
         this.style.transform = 'scale(0.95)';
-        
-        // Directly show popup without loading screen
+    
+        // 2. Sembunyikan cover page
         coverPage.style.display = 'none';
-        popupOverlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        
-        // Reset button animation
+    
+        // 3. Tampilkan main content (ganti display:none menjadi display:block)
+        mainContent.style.display = 'block'; 
+    
+        // 4. Izinkan scrolling pada body
+        document.body.style.overflow = 'auto'; 
+    
+        // 5. Inisialisasi semua fungsi utama
+        initMainContent(); 
+    
+        // 6. Reset animasi tombol
         setTimeout(() => {
             this.style.transform = 'scale(1)';
         }, 150);
@@ -87,14 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
         initMainContent();
     }
 
-    closePopupBtn.addEventListener('click', closePopup);
-
-    // Close popup when clicking outside the image
-    popupOverlay.addEventListener('click', function(e) {
-        if (e.target === popupOverlay) {
-            closePopup();
-        }
-    });
 
     // Initialize main content
     function initMainContent() {
@@ -375,45 +373,3 @@ document.addEventListener('DOMContentLoaded', function() {
             e.target.style.display = 'none';
         }
     }, true);
-
-    // Handle popup image loading
-    const popupImage = document.getElementById('popupImage');
-    if (popupImage) {
-        popupImage.onerror = function() {
-            this.style.display = 'none';
-            const errorDiv = document.createElement('div');
-            errorDiv.style.cssText = `
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                text-align: center;
-                padding: 20px;
-            `;
-            errorDiv.innerHTML = `
-                <i class="fas fa-image" style="font-size: 4rem; color: #D4523F; margin-bottom: 20px;"></i>
-                <h3 style="color: white; margin-bottom: 10px;">Selamat Datang di Perayaan Natal 2025</h3>
-                <p style="color: #C19D60; margin-bottom: 20px;">Keluarga Besar BPS Sumatera Utara</p>
-                <p style="color: #D4523F; font-style: italic;">"Allah Hadir untuk Menyelamatkan Keluarga" - Matius 1:21-24</p>
-                <button onclick="closePopup()" style="margin-top: 30px; background: #D4523F; color: white; border: none; padding: 15px 40px; border-radius: 25px; font-size: 1.1rem; cursor: pointer;">
-                    Lanjutkan ke Undangan
-                </button>
-            `;
-            this.parentNode.appendChild(errorDiv);
-        };
-    }
-});
-
-// Make closePopup function globally available
-function closePopup() {
-    const popupOverlay = document.getElementById('popupOverlay');
-    const mainContent = document.getElementById('mainContent');
-    
-    if (popupOverlay) popupOverlay.style.display = 'none';
-    if (mainContent) mainContent.style.display = 'block';
-    
-    document.body.style.overflow = 'auto';
-}
