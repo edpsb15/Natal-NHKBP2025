@@ -1728,3 +1728,175 @@ body {
         display: flex !important;
     }
 }
+
+/* Donation Section Styles */
+.donation {
+    margin-bottom: 80px;
+}
+
+.donation-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Gift Card (Account Info) */
+.gift-card {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(193, 157, 96, 0.2) 100%);
+    border-radius: 12px;
+    padding: 35px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    margin: 2px;
+    transition: transform 0.3s ease;
+}
+
+.gift-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header i {
+    font-size: 3.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.card-header h5 {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.bank-name {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: var(--primary-light);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.account-name {
+    color: var(--secondary-light);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.account-number-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-top: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#accountNumber {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-right: 20px;
+    font-weight: 600;
+}
+
+.copy-btn {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copy-btn:hover {
+    background: var(--primary-dark);
+}
+
+/* Donation Form Card */
+.donation-form-card {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(212, 82, 63, 0.2) 100%);
+    border-radius: 12px;
+    padding: 35px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    margin: 2px;
+}
+
+.donation-form-card h6 {
+    color: var(--secondary-light);
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--secondary-light);
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.submit-btn {
+    width: 100%;
+    /* Menggunakan kelas styling map-button secondary dari atas */
+    padding: 20px 45px;
+    margin-top: 10px;
+}
+
+.form-note {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: var(--secondary-light);
+    opacity: 0.7;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+    .donation-container {
+        grid-template-columns: 1fr;
+    }
+    .gift-card, .donation-form-card {
+        padding: 25px;
+    }
+    #accountNumber {
+        font-size: 1.4rem;
+        margin-right: 15px;
+    }
+}
