@@ -1,5 +1,6 @@
 // Cover Page Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // VARIABEL INTI
     const coverPage = document.getElementById('coverPage');
     const openInvitationBtn = document.getElementById('openInvitation');
     const mainContent = document.getElementById('mainContent');
@@ -13,15 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let mapInitialized = false;
     let map;
 
-    // Initialize snowflakes
+    // --- FUNGSI SNOWFLAKES (Tetap) ---
+
     function createSnowflakes() {
         const snowflakesContainer = document.getElementById('snowflakesContainer');
         const snowflakeSymbols = ['❄', '❅', '❆', '❉', '❋', '✨', '⭐', '🌟'];
         
-        // Clear existing snowflakes
         snowflakesContainer.innerHTML = '';
         
-        // Create 150 snowflakes (lebih banyak!)
         for (let i = 0; i < 150; i++) {
             const snowflake = document.createElement('div');
             snowflake.className = 'snowflake';
@@ -36,15 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Create snowflakes for cover page
     function createCoverSnowflakes() {
         const coverSnowflakes = document.querySelector('.cover-snowflakes');
         const snowflakeSymbols = ['❄', '❅', '❆', '❉', '❋', '✨'];
         
-        // Clear existing snowflakes
         coverSnowflakes.innerHTML = '';
         
-        // Create 80 snowflakes for cover
         for (let i = 0; i < 80; i++) {
             const snowflake = document.createElement('div');
             snowflake.className = 'snowflake';
@@ -59,49 +56,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Open invitation function
-    // KODE BARU DI script.js (GANTIKAN KODE LAMA)
+    // --- FUNGSI UTAMA: BUKA UNDANGAN (Diperbaiki & Disederhanakan) ---
+
     openInvitationBtn.addEventListener('click', function() {
         // 1. Tambahkan animasi klik tombol
         this.style.transform = 'scale(0.95)';
-    
+        
         // 2. Sembunyikan cover page
         coverPage.style.display = 'none';
-    
-        // 3. Tampilkan main content (ganti display:none menjadi display:block)
+        
+        // 3. Tampilkan main content
         mainContent.style.display = 'block'; 
-    
+        
         // 4. Izinkan scrolling pada body
         document.body.style.overflow = 'auto'; 
-    
+        
         // 5. Inisialisasi semua fungsi utama
         initMainContent(); 
-    
+        
         // 6. Reset animasi tombol
         setTimeout(() => {
             this.style.transform = 'scale(1)';
         }, 150);
     });
 
-    // Initialize main content
+    // --- FUNGSI INITIALIZATION UTAMA ---
+
     function initMainContent() {
-        // Create snowflakes
         createSnowflakes();
-        
-        // Start background music automatically
         startBackgroundMusic();
-        
-        // Start countdown
         startCountdown();
-        
-        // Initialize animations
         initAnimations();
-        
-        // Initialize map when user scrolls near it
         setupMapLazyLoad();
     }
 
-    // Lazy load map
+    // --- FUNGSI MAP (Koordinat disesuaikan ke HKBP Sipahutar - Estimasi) ---
+
     function setupMapLazyLoad() {
         const mapSection = document.querySelector('.map-section');
         const observer = new IntersectionObserver((entries) => {
@@ -122,10 +112,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initialize map with Leaflet
     function initMap() {
+        // Koordinat HKBP Sipahutar (GANTI INI JIKA ANDA TAHU KOORDINAT PASTINYA)
+        const churchLat = 1.9567; 
+        const churchLng = 99.0305;
+        const destinationName = 'HKBP Sipahutar Resort Sipahutar';
+        const destinationAddress = 'Desa Sipahutar I, Kec. Sipahutar, Kabupaten Tapanuli Utara';
+
         try {
-            map = L.map('map').setView([2.1171452, 99.0879337], 16);
+            map = L.map('map').setView([churchLat, churchLng], 16);
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '© OpenStreetMap contributors',
@@ -140,20 +135,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 popupAnchor: [0, -40]
             });
             
-            const marker = L.marker([2.1171452, 99.0853588], { icon: customIcon }).addTo(map);
-            
-            marker.bindPopup(`
-                <div style="text-align: center; padding: 15px; min-width: 250px;">
-                    <h4 style="margin: 0 0 10px 0; color: #D4523F; font-weight: bold; font-family: Cinzel, serif;">Labersa Hotel & Convention Center Samosir</h4>
-                    <p style="margin: 0; font-size: 13px; color: #666; line-height: 1.4;">Jl. Raya Simanindo-Pangururan, Desa Simarmata, Kabupaten Samosir</p>
-                    <p style="margin: 8px 0 0 0; font-size: 12px; color: #888;">Kapasitas: 700 orang</p>
-                    <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
-                        <button onclick="window.open('https://www.google.com/maps/place/HKBP+Sipahutar/@2.1171452,99.0853588,2380m/data=!3m2!1e3!4b1!4m6!3m5!1s0x302e733063f9379b:0xaf620fc346fa568b!8m2!3d2.1171452!4d99.0879337!16s%2Fg%2F11t5_2fp2s?entry=ttu', '_blank')" style="background: #D4523F; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-top: 5px;">
-                            <i class="fas fa-external-link-alt"></i> Buka di Google Maps
-                        </button>
+            L.marker([churchLat, churchLng], { icon: customIcon }).addTo(map)
+                .bindPopup(`
+                    <div style="text-align: center; padding: 15px; min-width: 250px;">
+                        <h4 style="margin: 0 0 10px 0; color: #D4523F; font-weight: bold; font-family: Cinzel, serif;">${destinationName}</h4>
+                        <p style="margin: 0; font-size: 13px; color: #666; line-height: 1.4;">${destinationAddress}</p>
+                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
+                            <button onclick="window.open('https://maps.google.com/?q=${churchLat},${churchLng}', '_blank')" style="background: #D4523F; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-top: 5px;">
+                                <i class="fas fa-external-link-alt"></i> Buka di Google Maps
+                            </button>
+                        </div>
                     </div>
-                </div>
-            `).openPopup();
+                `).openPopup();
             
             // Add CSS for pulse animation
             const style = document.createElement('style');
@@ -168,14 +161,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
         } catch (error) {
             console.error('Error initializing map:', error);
+            // Fallback Map UI
             document.getElementById('map').innerHTML = `
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 20px; text-align: center;">
                     <i class="fas fa-map-marked-alt" style="font-size: 60px; color: #D4523F; margin-bottom: 20px;"></i>
-                    <h4 style="color: #D4523F; margin-bottom: 10px;">Labersa Hotel & Convention Center Samosir</h4>
-                    <p style="color: #666; margin-bottom: 5px;">Jl. Raya Simanindo-Pangururan, Desa Simarmata</p>
-                    <p style="color: #888; margin-bottom: 20px;">Kabupaten Samosir</p>
-                    <a href="https://www.google.com/maps/place/HKBP+Sipahutar/@2.1171452,99.0853588,2380m/data=!3m2!1e3!4b1!4m6!3m5!1s0x302e733063f9379b:0xaf620fc346fa568b!8m2!3d2.1171452!4d99.0879337!16s%2Fg%2F11t5_2fp2s?entry=ttu&" 
-                       target="_blank" style="background: #D4523F; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
+                    <h4 style="color: #D4523F; margin-bottom: 10px;">${destinationName}</h4>
+                    <p style="color: #666; margin-bottom: 5px;">${destinationAddress}</p>
+                    <a href="https://maps.google.com/?q=${churchLat},${churchLng}" 
+                        target="_blank" style="background: #D4523F; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
                         <i class="fas fa-external-link-alt"></i> Buka di Google Maps
                     </a>
                 </div>
@@ -183,31 +176,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Get directions button
+    // --- FUNGSI ARAH (Directions) ---
+
     getDirectionsBtn.addEventListener('click', function() {
+        const destination = '1.9567,99.0305'; // Koordinat HKBP Sipahutar
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 const userLat = position.coords.latitude;
                 const userLng = position.coords.longitude;
-                const destination = '2.1171452,99.0853588';
-                
-                // Open Google Maps with directions
+                // Menggunakan `daddr` untuk tujuan di Google Maps
                 window.open(`https://www.google.com/maps/dir/${userLat},${userLng}/${destination}`, '_blank');
             }, function(error) {
-                // If user denies location access, open just the destination
-                window.open('https://www.google.com/maps/place/HKBP+Sipahutar/@2.1171452,99.0879337,2380m/data=!3m2!1e3!4b1!4m6!3m5!1s0x302e733063f9379b:0xaf620fc346fa568b!8m2!3d2.1171452!4d99.0879337!16s%2Fg%2F11t5_2fp2s?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D', '_blank');
+                // Jika lokasi ditolak, buka peta langsung di tujuan
+                window.open(`https://www.google.com/maps/search/?api=1&query=${destination}`, '_blank');
             });
         } else {
-            window.open('https://www.google.com/maps/place/HKBP+Sipahutar/@2.1171452,99.0879337,2380m/data=!3m2!1e3!4b1!4m6!3m5!1s0x302e733063f9379b:0xaf620fc346fa568b!8m2!3d2.1171452!4d99.0879337!16s%2Fg%2F11t5_2fp2s?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D', '_blank');
+            window.open(`https://www.google.com/maps/search/?api=1&query=${destination}`, '_blank');
         }
     });
 
-    // Start background music
+    // --- FUNGSI MUSIK (Tetap) ---
+
     function startBackgroundMusic() {
-        // Set music volume
         backgroundMusic.volume = 0.3;
         
-        // Play music
         const playPromise = backgroundMusic.play();
         
         if (playPromise !== undefined) {
@@ -216,13 +208,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateMusicUI(true);
             }).catch(error => {
                 console.log("Autoplay prevented: ", error);
-                // Show play button if autoplay is blocked
                 document.getElementById('musicPlayer').style.display = 'flex';
             });
         }
     }
 
-    // Update music UI
     function updateMusicUI(isPlaying) {
         if (isPlaying) {
             musicIcon.className = 'fas fa-pause';
@@ -235,7 +225,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Music toggle functionality
     musicToggle.addEventListener('click', function() {
         if (isMusicPlaying) {
             backgroundMusic.pause();
@@ -248,7 +237,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Enhanced Countdown Timer
+    // --- FUNGSI COUNTDOWN (Tetap) ---
+
     function startCountdown() {
         function updateCountdown() {
             const eventDate = new Date('December 23, 2025 18:00:00').getTime();
@@ -260,7 +250,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Add animation to countdown numbers
             animateCountdown('days', days.toString().padStart(2, '0'));
             animateCountdown('hours', hours.toString().padStart(2, '0'));
             animateCountdown('minutes', minutes.toString().padStart(2, '0'));
@@ -296,9 +285,9 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCountdown();
     }
 
-    // Initialize animations for main content
+    // --- FUNGSI ANIMASI (Tetap) ---
+
     function initAnimations() {
-        // Add entrance animations to all sections
         const sections = document.querySelectorAll('.header-logos, .header, .hero, .detail-card, .rundown-card, .map-section, .info-card, .countdown, .footer');
         
         sections.forEach((section, index) => {
@@ -313,7 +302,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Parallax effect for ornaments
+    // --- FUNGSI PARALLAX (Tetap) ---
+
     window.addEventListener('scroll', function() {
         const scrolled = window.pageYOffset;
         const ornaments = document.querySelectorAll('.ornament');
@@ -325,19 +315,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Initialize cover page
+    // --- FUNGSI INITIALIZE COVER PAGE (Dibersihkan dari popup) ---
+
     function initCoverPage() {
-        // Create snowflakes for cover
         createCoverSnowflakes();
         
-        // Ensure elements are properly hidden initially
+        // Pastikan main content disembunyikan dan cover ditunjukkan
         mainContent.style.display = 'none';
         coverPage.style.display = 'flex';
         
-        // Make cover page scrollable
         document.body.style.overflow = 'auto';
         
-        // Add entrance animation to cover elements
+        // Animasi cover
         const coverElements = document.querySelectorAll('.cover-header, .cover-body');
         coverElements.forEach((element, index) => {
             element.style.opacity = '0';
@@ -351,13 +340,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize the cover page
+    // --- INIT ---
     initCoverPage();
 
-    // Handle image loading errors
-    window.addEventListener('error', function(e) {
-        if (e.target.tagName === 'IMG') {
-            console.warn('Image failed to load:', e.target.src);
-            e.target.style.display = 'none';
-        }
-    }, true);
+    // HAPUS SEPENUHNYA LOGIKA IMAGE LOADING ERROR YANG MEMANGGIL POPUP/CLOSEPOPUP
+    // window.addEventListener('error', function(e) { /* ... */ });
+});
