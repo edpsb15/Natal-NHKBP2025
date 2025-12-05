@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 popupAnchor: [0, -40]
             });
             
-            const marker = L.marker([2.7416459, 98.7095258], { icon: customIcon }).addTo(map);
+            const marker = L.marker([2.1171452, 99.0853588], { icon: customIcon }).addTo(map);
             
             marker.bindPopup(`
                 <div style="text-align: center; padding: 15px; min-width: 250px;">
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p style="margin: 0; font-size: 13px; color: #666; line-height: 1.4;">Jl. Raya Simanindo-Pangururan, Desa Simarmata, Kabupaten Samosir</p>
                     <p style="margin: 8px 0 0 0; font-size: 12px; color: #888;">Kapasitas: 700 orang</p>
                     <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
-                        <button onclick="window.open('https://www.google.com/maps/place/Labersa+Hotel+%26+Convention+Center+Samosir,+Simarmata/@2.7416513,98.7069509,17z/data=!4m9!3m8!1s0x3031c70074a74af3:0x6fd34e6bdf43b7af!5m2!4m1!1i2!8m2!3d2.7416459!4d98.7095258!16s%2Fg%2F11y5sk_61h?entry=ttu', '_blank')" style="background: #D4523F; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-top: 5px;">
+                        <button onclick="window.open('https://www.google.com/maps/place/HKBP+Sipahutar/@2.1171452,99.0853588,2380m/data=!3m2!1e3!4b1!4m6!3m5!1s0x302e733063f9379b:0xaf620fc346fa568b!8m2!3d2.1171452!4d99.0879337!16s%2Fg%2F11t5_2fp2s?entry=ttu', '_blank')" style="background: #D4523F; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-top: 5px;">
                             <i class="fas fa-external-link-alt"></i> Buka di Google Maps
                         </button>
                     </div>
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h4 style="color: #D4523F; margin-bottom: 10px;">Labersa Hotel & Convention Center Samosir</h4>
                     <p style="color: #666; margin-bottom: 5px;">Jl. Raya Simanindo-Pangururan, Desa Simarmata</p>
                     <p style="color: #888; margin-bottom: 20px;">Kabupaten Samosir</p>
-                    <a href="https://www.google.com/maps/place/Labersa+Hotel+%26+Convention+Center+Samosir,+Simarmata/@2.7416513,98.7069509,17z/data=!4m9!3m8!1s0x3031c70074a74af3:0x6fd34e6bdf43b7af!5m2!4m1!1i2!8m2!3d2.7416459!4d98.7095258!16s%2Fg%2F11y5sk_61h?entry=ttu" 
+                    <a href="https://www.google.com/maps/place/HKBP+Sipahutar/@2.1171452,99.0853588,2380m/data=!3m2!1e3!4b1!4m6!3m5!1s0x302e733063f9379b:0xaf620fc346fa568b!8m2!3d2.1171452!4d99.0879337!16s%2Fg%2F11t5_2fp2s?entry=ttu&" 
                        target="_blank" style="background: #D4523F; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
                         <i class="fas fa-external-link-alt"></i> Buka di Google Maps
                     </a>
@@ -202,16 +202,16 @@ document.addEventListener('DOMContentLoaded', function() {
             navigator.geolocation.getCurrentPosition(function(position) {
                 const userLat = position.coords.latitude;
                 const userLng = position.coords.longitude;
-                const destination = '2.7416459,98.7095258';
+                const destination = '2.1171452,99.0853588';
                 
                 // Open Google Maps with directions
                 window.open(`https://www.google.com/maps/dir/${userLat},${userLng}/${destination}`, '_blank');
             }, function(error) {
                 // If user denies location access, open just the destination
-                window.open('https://www.google.com/maps/place/Labersa+Hotel+%26+Convention+Center+Samosir/@2.7416459,98.7095258,17z', '_blank');
+                window.open('https://www.google.com/maps/place/HKBP+Sipahutar/@2.1171452,99.0879337,2380m/data=!3m2!1e3!4b1!4m6!3m5!1s0x302e733063f9379b:0xaf620fc346fa568b!8m2!3d2.1171452!4d99.0879337!16s%2Fg%2F11t5_2fp2s?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D', '_blank');
             });
         } else {
-            window.open('https://www.google.com/maps/place/Labersa+Hotel+%26+Convention+Center+Samosir/@2.7416459,98.7095258,17z', '_blank');
+            window.open('https://www.google.com/maps/place/HKBP+Sipahutar/@2.1171452,99.0879337,2380m/data=!3m2!1e3!4b1!4m6!3m5!1s0x302e733063f9379b:0xaf620fc346fa568b!8m2!3d2.1171452!4d99.0879337!16s%2Fg%2F11t5_2fp2s?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D', '_blank');
         }
     });
 
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enhanced Countdown Timer
     function startCountdown() {
         function updateCountdown() {
-            const eventDate = new Date('December 20, 2025 15:00:00').getTime();
+            const eventDate = new Date('December 23, 2025 18:00:00').getTime();
             const now = new Date().getTime();
             const distance = eventDate - now;
 
