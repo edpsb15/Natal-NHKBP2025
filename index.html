@@ -129,6 +129,32 @@
             </div>
         </header>
 
+        <!-- Countdown -->
+        <section class="countdown gorga-border">
+            <div class="section-title">
+                <h4>Menuju Perayaan Natal</h4>
+                <div class="title-underline"></div>
+            </div>
+            <div class="countdown-timer" id="countdown">
+                <div class="countdown-item gorga-border">
+                    <span id="days">00</span>
+                    <small>Hari</small>
+                </div>
+                <div class="countdown-item gorga-border">
+                    <span id="hours">00</span>
+                    <small>Jam</small>
+                </div>
+                <div class="countdown-item gorga-border">
+                    <span id="minutes">00</span>
+                    <small>Menit</small>
+                </div>
+                <div class="countdown-item gorga-border">
+                    <span id="seconds">00</span>
+                    <small>Detik</small>
+                </div>
+            </div>
+        </section>
+        
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
@@ -218,32 +244,52 @@
             </div>
         </section>
 
-        <!-- Countdown -->
-        <section class="countdown gorga-border">
-            <div class="section-title">
-                <h4>Menuju Perayaan Natal</h4>
-                <div class="title-underline"></div>
-            </div>
-            <div class="countdown-timer" id="countdown">
-                <div class="countdown-item gorga-border">
-                    <span id="days">00</span>
-                    <small>Hari</small>
-                </div>
-                <div class="countdown-item gorga-border">
-                    <span id="hours">00</span>
-                    <small>Jam</small>
-                </div>
-                <div class="countdown-item gorga-border">
-                    <span id="minutes">00</span>
-                    <small>Menit</small>
-                </div>
-                <div class="countdown-item gorga-border">
-                    <span id="seconds">00</span>
-                    <small>Detik</small>
-                </div>
-            </div>
-        </section>
+        <!-- Donation -->
+        <section class="donation">
+        <div class="section-title">
+            <h4>Sumbangan Natal & Ucapan Syukur</h4>
+            <div class="title-underline"></div>
+        </div>
 
+        <div class="donation-container">
+            <div class="gift-card gorga-border">
+                <div class="card-header">
+                    <i class="fas fa-university"></i>
+                    <h5>Rekening Panitia Natal</h5>
+                </div>
+                <div class="card-details">
+                    <p class="bank-name">BANK MANDIRI</p>
+                    <p class="account-name">A.N. Panitia Natal NHKBP Sipahutar 2025</p>
+                    <div class="account-number-box">
+                        <span id="accountNumber">146-00-1234567-8</span>
+                        <button class="copy-btn" id="copyBtn">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="donation-form-card gorga-border">
+                <h6>Konfirmasi Sumbangan via WhatsApp</h6>
+                <form id="donationForm">
+                    <div class="form-group">
+                        <label for="inputName">Nama Pengirim/Keluarga</label>
+                        <input type="text" id="inputName" placeholder="Contoh: Bpk/Ibu. Mangaraja Siregar" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputNominal">Nominal (Contoh: 50000)</label>
+                        <input type="number" id="inputNominal" placeholder="Cukup angkanya saja, misal: 50000" required>
+                    </div>
+                    <button type="submit" class="submit-btn map-button secondary">
+                        <i class="fab fa-whatsapp"></i> Konfirmasi via WhatsApp
+                    </button>
+                </form>
+                <p class="form-note">Konfirmasi ini akan membantu Panitia melakukan rekapitulasi.</p>
+            </div>
+        </div>
+    </section>
+        
+        
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
