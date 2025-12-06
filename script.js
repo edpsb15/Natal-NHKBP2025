@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 9. FUNGSI ANIMASI & PARALLAX (Tetap) ---
 
     function initAnimations() {
-        const sections = document.querySelectorAll('.header-logos, .header, .hero, .detail-card, .rundown-card, .map-section, .info-card, .countdown, .footer, .donation');
+        const sections = document.querySelectorAll('.header-logos, .header, .hero, .detail-card, .rundown-card, .map-section, .info-card, .countdown, .footer, .donation, .gallery');
         
         sections.forEach((section, index) => {
             section.style.opacity = '0';
@@ -370,6 +370,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // --- 12. Gallery (Tetap) ---
+    
+    
     // --- JALANKAN INISIALISASI ---
     initCoverPage();
 });
