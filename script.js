@@ -1,9 +1,9 @@
 // =================================================================
-// SCRIPT.JS - VERSI BERSIH & KOORDINAT DIPERBARUI
+// SCRIPT.JS - VERSI BERSIH & TAAN GOOGLE MAPS DIKOREKSI
 // =================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    // --- 1. VARIABEL INTI & KOORDINAT BARU ---
+    // --- 1. VARIABEL INTI & KOORDINAT ---
     const coverPage = document.getElementById('coverPage');
     const openInvitationBtn = document.getElementById('openInvitation');
     const mainContent = document.getElementById('mainContent');
@@ -13,37 +13,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const musicText = document.querySelector('.music-text');
     const visualizer = document.getElementById('visualizer');
     const getDirectionsBtn = document.getElementById('getDirections');
-    let isMusicPlaying = false;
-    let mapInitialized = false;
     
-    // KOORDINAT BARU YANG BENAR (HKBP SIPAHUTAR)
+    // KOORDINAT YANG BENAR
     const churchLat = 2.1166293; 
     const churchLng = 99.0867791;
-    const destination = `${churchLat},${churchLng}`; // Digunakan untuk link Google Maps
+    const destination = `${churchLat},${churchLng}`; 
     const destinationName = 'HKBP SIPAHUTAR';
     const destinationAddress = 'Ressort Sipahutar, Tapanuli Utara';
     
+    let isMusicPlaying = false;
+    let mapInitialized = false;
     let map;
 
     // --- 2. FUNGSI UTAMA: BUKA UNDANGAN ---
 
     openInvitationBtn.addEventListener('click', function() {
-        // Animasi klik tombol
         this.style.transform = 'scale(0.95)';
-        
-        // Sembunyikan cover page
         coverPage.style.display = 'none';
-        
-        // Tampilkan main content
         mainContent.style.display = 'block'; 
-        
-        // Izinkan scrolling pada body
         document.body.style.overflow = 'auto'; 
-        
-        // Inisialisasi semua fungsi interaktif
         initMainContent(); 
-        
-        // Reset animasi tombol
         setTimeout(() => {
             this.style.transform = 'scale(1)';
         }, 150);
@@ -59,8 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
         setupMapLazyLoad();
     }
 
-    // --- 4. FUNGSI SNOWFLAKES (Tetap) ---
-
+    // --- 4. FUNGSI SNOWFLAKES ---
+    
     function createSnowflakes() {
         const snowflakesContainer = document.getElementById('snowflakesContainer');
         const snowflakeSymbols = ['❄', '❅', '❆', '❉', '❋', '✨', '⭐', '🌟'];
@@ -97,7 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- 5. FUNGSI MAP LEAFLET (Koordinat & Teks Diperbaiki) ---
+
+    // --- 5. FUNGSI MAP LEAFLET (LINK DIKOREKSI) ---
 
     function setupMapLazyLoad() {
         const mapSection = document.querySelector('.map-section');
@@ -121,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function initMap() {
         try {
-            // Menggunakan koordinat yang diberikan user
             map = L.map('map').setView([churchLat, churchLng], 16);
             
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -129,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 maxZoom: 19
             }).addTo(map);
             
-            // Add custom marker
+            // Marker
             const customIcon = L.divIcon({
                 html: '<div style="background: #D4523F; width: 40px; height: 40px; border-radius: 50%; border: 4px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; animation: pulse 2s infinite;"><i class="fas fa-map-marker-alt" style="color: white; font-size: 18px;"></i></div>',
                 iconSize: [40, 40],
@@ -143,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <h4 style="margin: 0 0 10px 0; color: #D4523F; font-weight: bold; font-family: Cinzel, serif;">${destinationName}</h4>
                         <p style="margin: 0; font-size: 13px; color: #666; line-height: 1.4;">${destinationAddress}</p>
                         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee;">
-                            <button onclick="window.open('http://googleusercontent.com/maps.google.com/?q=${churchLat},${churchLng}', '_blank')" style="background: #D4523F; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-top: 5px;">
+                            <button onclick="window.open('https://www.google.com/maps/search/?api=1&query=${churchLat},${churchLng}', '_blank')" style="background: #D4523F; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 12px; margin-top: 5px;">
                                 <i class="fas fa-external-link-alt"></i> Buka di Google Maps
                             </button>
                         </div>
@@ -165,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <i class="fas fa-map-marked-alt" style="font-size: 60px; color: #D4523F; margin-bottom: 20px;"></i>
                     <h4 style="color: #D4523F; margin-bottom: 10px;">${destinationName}</h4>
                     <p style="color: #666; margin-bottom: 5px;">${destinationAddress}</p>
-                    <a href="http://googleusercontent.com/maps.google.com/?q=${churchLat},${churchLng}" 
+                    <a href="https://www.google.com/maps/search/?api=1&query=${churchLat},${churchLng}" 
                         target="_blank" style="background: #D4523F; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
                         <i class="fas fa-external-link-alt"></i> Buka di Google Maps
                     </a>
@@ -174,21 +163,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- 6. FUNGSI ARAH (Directions - Koordinat Tujuan Diperbaiki) ---
+    // --- 6. FUNGSI ARAH (Directions - LINK DIKOREKSI) ---
 
     getDirectionsBtn.addEventListener('click', function() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 const userLat = position.coords.latitude;
                 const userLng = position.coords.longitude;
-                // Menggunakan `daddr` untuk tujuan di Google Maps
-                window.open(`https://www.google.com/maps/dir/${userLat},${userLng}/${destination}`, '_blank');
+                // LINK DIKOREKSI
+                window.open(`https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${destination}`, '_blank');
             }, function(error) {
-                // Jika lokasi ditolak, buka peta langsung di tujuan
-                window.open(`http://googleusercontent.com/maps.google.com/?q=${destination}`, '_blank');
+                // LINK DIKOREKSI (Fall back jika lokasi ditolak)
+                window.open(`https://www.google.com/maps/dir/?api=1&destination=${destination}`, '_blank');
             });
         } else {
-            window.open(`http://googleusercontent.com/maps.google.com/?q=${destination}`, '_blank');
+            // LINK DIKOREKSI (Fall back jika Geolocation tidak didukung)
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${destination}`, '_blank');
         }
     });
 
@@ -283,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 9. FUNGSI ANIMASI & PARALLAX (Tetap) ---
 
     function initAnimations() {
-        const sections = document.querySelectorAll('.header-logos, .header, .hero, .detail-card, .rundown-card, .map-section, .info-card, .countdown, .footer');
+        const sections = document.querySelectorAll('.header-logos, .header, .hero, .detail-card, .rundown-card, .map-section, .info-card, .countdown, .footer, .donation');
         
         sections.forEach((section, index) => {
             section.style.opacity = '0';
@@ -331,10 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- JALANKAN INISIALISASI ---
-    initCoverPage();
-
-    // --- 11. FUNGSI SUMBANGAN & WA CONFIRMATION ---
+    // --- 11. FUNGSI SUMBANGAN & WA CONFIRMATION (Tetap) ---
 
     const copyBtn = document.getElementById('copyBtn');
     const accountNumberSpan = document.getElementById('accountNumber');
@@ -345,16 +332,15 @@ document.addEventListener('DOMContentLoaded', function() {
         copyBtn.addEventListener('click', function() {
             const accountNumber = accountNumberSpan.textContent;
             
-            // Menggunakan Clipboard API untuk menyalin
             navigator.clipboard.writeText(accountNumber)
                 .then(() => {
                     const originalText = this.innerHTML;
                     this.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
-                    this.style.background = '#00a854'; // Warna hijau sukses
+                    this.style.background = '#00a854'; 
                     
                     setTimeout(() => {
                         this.innerHTML = originalText;
-                        this.style.background = ''; // Kembali ke warna CSS semula
+                        this.style.background = ''; 
                     }, 1500);
                 })
                 .catch(err => {
@@ -370,21 +356,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const inputName = document.getElementById('inputName').value;
             const inputNominal = document.getElementById('inputNominal').value;
-            const phoneNumber = '6281263649153'; // Nomor WA Panitia
+            const phoneNumber = '6281263649153'; 
 
-            // Template pesan WhatsApp
             const rawText = 
-                `Salam Natal, ` + 
-                `Saya ${inputName} ingin konfirmasi sumbangan Natal sebesar Rp${inputNominal} untuk Perayaan Natal NHKBP Sipahutar 2025.` +
-                `Terimakasih, Tuhan Memberkati!`;
+                `Salam Natal,%0A` + 
+                `Saya ${inputName} ingin konfirmasi sumbangan Natal sebesar Rp${inputNominal} untuk Perayaan Natal NHKBP Sipahutar 2025.%0A` +
+                `%0ATerimakasih, Tuhan Memberkati!`;
 
-            // Menggantikan spasi dengan %20 dan memastikan format URI aman
             const message = encodeURIComponent(rawText);
 
-            // Buka tautan WhatsApp
             const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(whatsappLink, '_blank');
         });
     }
-    
+
+    // --- JALANKAN INISIALISASI ---
+    initCoverPage();
 });
