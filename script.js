@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const getDirectionsBtn = document.getElementById('getDirections');
     
     // KOORDINAT YANG BENAR
-    const churchLat = 2.117252848536015; 
-    const churchLng = 99.08794465127832;
+    const churchLat = 2.1171310689369833; 
+    const churchLng = 99.08794772929461;
     const destination = `${churchLat},${churchLng}`; 
     const destinationName = 'HKBP SIPAHUTAR Ressort Sipahutar';
     const destinationAddress = 'Sipahutar I, Sipahutar, Tapanuli Utara';
